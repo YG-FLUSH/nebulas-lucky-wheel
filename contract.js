@@ -39,9 +39,9 @@ LuckyWheelContract.prototype = {
         var value = new BigNumber(parseInt(Blockchain.transaction.value));
         var txHash = Blockchain.transaction.hash;
         var timestamp = Blockchain.transaction.timestamp;
-        // if (value.cmp(this._weitonas(0.01)) == -1){
-        //     throw new Error("value is wrong, should be more than 0.01 nas")
-        // }
+        if (value.cmp(this._weitonas(0.01)) == -1){
+            throw new Error("value is wrong, should be more than 0.01 nas")
+        }
         this.jackpotBalance = this.jackpotBalance.plus(value);
         const award = this._gen_award(txHash);
         var item = new LotteryItem(from, this.wheelId, txHash, this.jackpotBalance, timestamp, award.value, award.position);
